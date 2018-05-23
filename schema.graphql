@@ -5,18 +5,18 @@ schema {
 
 # The query type, represents all of the entry points into our object graph
 type Query {
-    me(id: ID!): User
+    getUser(id: ID!): User
 }
 
 # The mutation type, represents all updates we can make to our data
 type Mutation {
-    signup (username: String!, email: String!, password: String!): String
-    login (email: String!, password: String!): String
+    #signup (username: String!, email: String!, password: String!): String
+    #login (email: String!, password: String!): String
 }
 
 # what is needed for a user
 type User {
     id: ID
-    username: String!
-    email: String!
+    username: String
+    email: String
 }

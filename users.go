@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"fmt"
 
+	graphql "github.com/graph-gophers/graphql-go"
 	"github.com/jinzhu/gorm"
 )
 
@@ -10,6 +12,7 @@ import (
 type User struct {
 	gorm.Model
 	Username string
+	Email    string
 }
 
 // DB METHODS ==========================================================================
@@ -20,6 +23,18 @@ func (db *DB) getUser(ctx context.Context, id int32) (*User, error) {
 	if err != nil {
 		return nil, err
 	}
-
+	fmt.Println(user.Username)
 	return &user, nil
+}
+
+func (u *User) ID(ctx context.Context) *graphql.ID {
+	return gqlIDP(u.Model.ID)
+}
+
+func (u *User) USERNAME(ctx context.Context) *string {
+	return &u.Username
+}
+
+func (u *User) EMAIL(ctx context.Context) *string {
+	return &u.Email
 }
