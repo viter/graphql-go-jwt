@@ -15,6 +15,8 @@ type DB struct {
 	DB *gorm.DB
 }
 
+var jwtSecret string
+
 // NewDB returns a new DB connection
 func newDB() (*DB, error) {
 	err := godotenv.Load()
@@ -24,6 +26,7 @@ func newDB() (*DB, error) {
 
 	dbUser := os.Getenv("db_user")
 	dbPass := os.Getenv("db_pass")
+	jwtSecret = os.Getenv("jwt_secret")
 	// connect to the example db, create if it doesn't exist
 	db, err := gorm.Open("mysql", dbUser+":"+dbPass+"@/learngraphql?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {

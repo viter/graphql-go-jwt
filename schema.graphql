@@ -11,7 +11,7 @@ type Query {
 # The mutation type, represents all updates we can make to our data
 type Mutation {
     #signup (username: String!, email: String!, password: String!): String
-    #login (email: String!, password: String!): String
+    login (email: String!, password: String!): String
 }
 
 # what is needed for a user
